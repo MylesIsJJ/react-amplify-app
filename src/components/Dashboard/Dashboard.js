@@ -24,7 +24,7 @@ import InputBase from '@mui/material/InputBase';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import SearchIcon from '@mui/icons-material/Search';
-import { StyledEngineProvider } from '@mui/material/styles';
+//import { StyledEngineProvider } from '@mui/material/styles';
 
 function Copyright(props) {
   return (
@@ -179,13 +179,13 @@ function DashboardContent() {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="hello niggas"
+              placeholder="Search ..."
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
 
             <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
+              <Badge badgeContent={7} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
@@ -224,7 +224,7 @@ function DashboardContent() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              {/* Chart */}
+              { Chart }
               <Grid item xs={12} md={8} lg={9}>
                 <Paper
                   sx={{
@@ -234,7 +234,7 @@ function DashboardContent() {
                     height: 500,
                   }}
                 >
-                  {/* <Chart /> */}
+                  { <Chart /> }
                 </Paper>
               </Grid>
               {/* Recent Deposits */}

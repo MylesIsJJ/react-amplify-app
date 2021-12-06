@@ -8,42 +8,54 @@ import TableRow from '@mui/material/TableRow';
 import Title from './Title';
 
 // Generate Order Data
-function createData(id, date, name, shipTo, paymentMethod, amount) {
-  return { id, date, name, shipTo, paymentMethod, amount };
+function createData(id, date, name, shipTo, paymentMethod, category,  amount) {
+  return { id, date, name, shipTo, paymentMethod, category, amount };
 }
 
 const rows = [
   createData(
     0,
     '16 Mar, 2019',
-    'Elvis Presley',
-    'Tupelo, MS',
+    'Kevin Womack',
+    'Somewhere, Dubai',
     'VISA ⠀•••• 3719',
+    'Concert Tickets',
     312.44,
   ),
   createData(
     1,
     '16 Mar, 2019',
-    'Paul McCartney',
+    'Myles Carswell',
     'London, UK',
     'VISA ⠀•••• 2574',
-    866.99,
+    'Yeezys',
+    966.99,
   ),
-  createData(2, '16 Mar, 2019', 'Tom Scholz', 'Boston, MA', 'MC ⠀•••• 1253', 100.81),
+  createData(
+      2, 
+    '16 Mar, 2019',
+    'Tom Scholz',
+    'Atlanta, Ga',
+    'MC ⠀•••• 1253',
+    'Busy Bee\'s ',
+      100.81),
+
   createData(
     3,
     '16 Mar, 2019',
-    'Michael Jackson',
+    'Matthew Ruiters',
     'Gary, IN',
     'AMEX ⠀•••• 2000',
-    654.39,
+    'Off Whytes',
+    6054.39,
   ),
   createData(
     4,
     '15 Mar, 2019',
-    'Bruce Springsteen',
+    'Rosa Thomas',
     'Long Branch, NJ',
     'VISA ⠀•••• 5919',
+    'Back to black Foundation',
     212.79,
   ),
 ];
@@ -63,6 +75,7 @@ export default function Orders() {
             <TableCell>Name</TableCell>
             <TableCell>Ship To</TableCell>
             <TableCell>Payment Method</TableCell>
+            <TableCell>Category</TableCell>
             <TableCell align="right">Sale Amount</TableCell>
           </TableRow>
         </TableHead>
@@ -73,6 +86,7 @@ export default function Orders() {
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.shipTo}</TableCell>
               <TableCell>{row.paymentMethod}</TableCell>
+              <TableCell>{row.category}</TableCell>
               <TableCell align="right">{`$${row.amount}`}</TableCell>
             </TableRow>
           ))}
