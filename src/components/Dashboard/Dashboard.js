@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -19,8 +19,12 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
+import InputBase from '@mui/material/InputBase';
+//import { styled, alpha } from '@mui/material/styles';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import SearchIcon from '@mui/icons-material/Search';
+import { StyledEngineProvider } from '@mui/material/styles';
 
 function Copyright(props) {
   return (
@@ -35,7 +39,7 @@ function Copyright(props) {
   );
 }
 
-const drawerWidth = 240;
+const drawerWidth = 250;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -83,6 +87,46 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
+const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(3),
+      width: 'auto',
+    },
+  }));
+  
+  const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }));
+  
+  const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    '& .MuiInputBase-input': {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      transition: theme.transitions.create('width'),
+      width: '100%',
+      [theme.breakpoints.up('md')]: {
+        width: '20ch',
+      },
+    },
+  }));
+
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -112,14 +156,34 @@ function DashboardContent() {
               <MenuIcon />
             </IconButton>
             <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ display: { xs: 'none', sm: 'block' } }}
+          >
+            SkyScrapers
+          </Typography>
+
+
+            {/* <Typography
               component="h1"
               variant="h6"
               color="inherit"
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
-            </Typography>
+              Homepage
+            </Typography> */}
+            <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="hello niggas"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
@@ -167,7 +231,7 @@ function DashboardContent() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: 500,
                   }}
                 >
                   {/* <Chart /> */}
@@ -182,6 +246,7 @@ function DashboardContent() {
                     flexDirection: 'column',
                     height: 240,
                   }}
+
                 >
                   <Deposits />
                 </Paper>
